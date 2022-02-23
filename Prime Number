@@ -18,9 +18,6 @@ def asal_mi(sayi):
     
 while i < len(liste):
         if asal_mi(liste[i])==1:
-            print(liste[i])
-            print(i)
-            print(y)
             toplam=toplam+liste[i]
             if i < 8:
                 i=i+y+1
@@ -55,9 +52,6 @@ def asal_mi(sayi):
     
 while i < len(liste):
         if asal_mi(liste[i])==1:
-            print(liste[i])
-            print(i)
-            print(y)
             toplam=toplam+liste[i]
             if i < 8:
                 i=i+y+1
