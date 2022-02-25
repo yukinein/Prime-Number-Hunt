@@ -6,7 +6,6 @@ import numpy as np
 
 liste = [1,8,4,2,6,9,8,5,9,3]
 toplamlistesi = [1,8,4,2,6,9,8,5,9,3]
-
 toplam=0
 
 
@@ -49,6 +48,8 @@ hatayedek=0
 xHatirlama=9999
 esasSonuc=0
 sallama=0
+hataxxx=0
+hataxxxxx=0
 
 while x < numrows:
     while y < numcols:
@@ -80,20 +81,20 @@ while x < numrows:
                 x=(x-sayac-1)
                 xHatirlama=x+1
                 while sayac>=0:
-                    if sayac==0:
-                        esasSonuc=esasSonuc-ucgenliste[x+sayac][y-1]
-                    else:
-                        esasSonuc=esasSonuc-ucgenliste[x+sayac][y]
+                    esasSonuc=esasSonuc-ucgenliste[x+sayac][y]
+                    hataxxxxx=ucgenliste[x+sayac][y]+hataxxxxx
                     sayac=sayac-1
             else:
                 x=(x-hatayedek+1)
                 xHatirlama=x+1
-                while hatayedek>0:
-                    esasSonuc=esasSonuc-ucgenliste[x+hatayedek-1][y-1]
+                while hatayedek>1:
+                    esasSonuc=esasSonuc-ucgenliste[x+hatayedek-2][hatayedek-1]
+                    hataxxx=ucgenliste[x][hatayedek-1]+hataxxx
                     hatayedek=hatayedek-1
             sayac=0
             break    
 print(esasSonuc)
+
 
 # Second pyramid
 
@@ -143,6 +144,8 @@ hatayedek=0
 xHatirlama=9999
 esasSonuc=0
 sallama=0
+hataxxx=0
+hataxxxxx=0
 
 while x < numrows:
     while y < numcols:
@@ -174,17 +177,17 @@ while x < numrows:
                 x=(x-sayac-1)
                 xHatirlama=x+1
                 while sayac>=0:
-                    if sayac==0:
-                        esasSonuc=esasSonuc-ucgenliste[x+sayac][y-1]
-                    else:
-                        esasSonuc=esasSonuc-ucgenliste[x+sayac][y]
+                    esasSonuc=esasSonuc-ucgenliste[x+sayac][y]
+                    hataxxxxx=ucgenliste[x+sayac][y]+hataxxxxx
                     sayac=sayac-1
             else:
                 x=(x-hatayedek+1)
                 xHatirlama=x+1
-                while hatayedek>0:
-                    esasSonuc=esasSonuc-ucgenliste[x+hatayedek-1][y-1]
+                while hatayedek>1:
+                    esasSonuc=esasSonuc-ucgenliste[x+hatayedek-2][hatayedek-1]
+                    hataxxx=ucgenliste[x][hatayedek-1]+hataxxx
                     hatayedek=hatayedek-1
             sayac=0
             break    
 print(esasSonuc)
+
