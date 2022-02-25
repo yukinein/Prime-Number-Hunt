@@ -1,5 +1,101 @@
 # This is my final code. I can write the code in different languages as well.
 
+# First pyramid
+
+import numpy as np
+
+liste = [1,8,4,2,6,9,8,5,9,3]
+toplamlistesi = [1,8,4,2,6,9,8,5,9,3]
+
+toplam=0
+
+
+def fill_lower_diag(a):
+    n = int(np.sqrt(len(a)*2))+1
+    mask = np.tri(n,dtype=bool, k=-1)
+    out = np.zeros((n,n),dtype=int)
+    out[mask] = a
+    return out
+
+ucgenliste = fill_lower_diag(toplamlistesi)
+
+def asal_mi(sayi):
+    if sayi > 1:
+        for i in range(2, int(sayi/2)+1):
+           if (sayi % i) == 0:
+                return 1
+                break
+        else:
+                return 0
+    else:
+        return 1
+
+i=0
+for i in range(i, len(liste)):
+    if asal_mi(liste[i]) ==1:
+        liste[i]=1
+    else:
+        liste[i]=0
+
+yeniliste = fill_lower_diag(liste)
+numrows = len(yeniliste)
+numcols = len(yeniliste[0])
+
+x=1
+y=0
+sayac=0
+alarm=0
+hatayedek=0
+xHatirlama=9999
+esasSonuc=0
+sallama=0
+
+while x < numrows:
+    while y < numcols:
+        if x==xHatirlama:
+            y=y+1
+            esasSonuc=esasSonuc+ucgenliste[x][y]
+            x=x+1
+            xHatirlama=0
+            if alarm==1:
+                sayac=sayac+1
+            break
+        if yeniliste[x][y]==1:
+            esasSonuc=esasSonuc+ucgenliste[x][y]
+            x=x+1
+            yDestegi=0
+            if alarm==1:
+                sayac=sayac+1
+            break
+        elif yeniliste[x][y+1]==1:
+            esasSonuc=esasSonuc+ucgenliste[x][y+1]
+            x=x+1
+            y=y+1
+            alarm=1
+            hatayedek=sayac
+            sayac=0
+            break
+        else:
+            if sayac>hatayedek:
+                x=(x-sayac-1)
+                xHatirlama=x+1
+                while sayac>=0:
+                    if sayac==0:
+                        esasSonuc=esasSonuc-ucgenliste[x+sayac][y-1]
+                    else:
+                        esasSonuc=esasSonuc-ucgenliste[x+sayac][y]
+                    sayac=sayac-1
+            else:
+                x=(x-hatayedek+1)
+                xHatirlama=x+1
+                while hatayedek>0:
+                    esasSonuc=esasSonuc-ucgenliste[x+hatayedek-1][y-1]
+                    hatayedek=hatayedek-1
+            sayac=0
+            break    
+print(esasSonuc)
+
+# Second pyramid
 
 import numpy as np
 
@@ -54,7 +150,7 @@ while x < numrows:
             y=y+1
             esasSonuc=esasSonuc+ucgenliste[x][y]
             x=x+1
-            yDestegi=0
+            xHatirlama=0
             if alarm==1:
                 sayac=sayac+1
             break
@@ -66,7 +162,7 @@ while x < numrows:
                 sayac=sayac+1
             break
         elif yeniliste[x][y+1]==1:
-            esasSonuc=esasSonuc+ucgenliste[x][y]
+            esasSonuc=esasSonuc+ucgenliste[x][y+1]
             x=x+1
             y=y+1
             alarm=1
@@ -84,7 +180,8 @@ while x < numrows:
                         esasSonuc=esasSonuc-ucgenliste[x+sayac][y]
                     sayac=sayac-1
             else:
-                x=(x-hatayedek)
+                x=(x-hatayedek+1)
+                xHatirlama=x+1
                 while hatayedek>0:
                     esasSonuc=esasSonuc-ucgenliste[x+hatayedek-1][y-1]
                     hatayedek=hatayedek-1
